@@ -8,7 +8,7 @@
 """
 import xlrd
 import os
-excle_path = os.path.join(os.path.dirname(__file__), 'data/teest_data.xlsx')
+excle_path = os.path.join(os.path.dirname(__file__), 'data/test_data.xlsx')
 print(excle_path)
 
 wb = xlrd.open_workbook(excle_path)
