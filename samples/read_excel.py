@@ -26,20 +26,21 @@ print(cell_value)
 print(sheet.merged_cells)
 merged = sheet.merged_cells
 # 逻辑：凡是属性范围内的值 都要等于左上角的值
-row_index = 3
-col_index = 0
-for (rlow, rhigh, clow, chigh) in merged:
-    if (row_index >= rlow and row_index < rhigh):
-        if (col_index >= clow and col_index < chigh):
-            cell_value = sheet.cell_value(rlow, clow)
+
 print(cell_value)
 
 
-def get_merged_cell_value(row_index, col_index):
+def get_merged_cell_value(row_index, col_index): #遍历表格中所有合并单元格信息
+    cell_values = None
     for (rlow, rhigh, clow, chigh) in merged:
         if rlow <= row_index < rhigh:
             if clow <= col_index < chigh:
-                return sheet.cell_value(rlow, clow)
-
-
-print(get_merged_cell_value(4,0))
+                cell_values = sheet.cell_value(rlow, clow)
+                break
+            else:
+                cell_values =  sheet.cell_value(row_index, col_index)
+        else:
+            cell_values = sheet.cell_value(row_index, col_index)
+    return cell_values
+for i in range(1,9):
+    print(get_merged_cell_value(i,0))
