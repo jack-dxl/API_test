@@ -31,6 +31,10 @@ class ExccelUtils():
         col_count = self.sheet.ncols
         return col_count
 
+    def get_cell_value(self,row_index,col_index):
+        cell_value = self.sheet.cell_value(row_index,col_index)
+        return cell_value
+
     def get_merged_info(self):
         merged_info = self.sheet.merged_cells
         return merged_info
@@ -41,13 +45,24 @@ class ExccelUtils():
         for (rlow, rhigh, clow, chigh) in self.get_merged_info():
             if rlow <= row_index < rhigh:
                 if clow <= col_index < chigh:
-                    cell_values = self.sheet.cell_value(rlow, clow)
+                    cell_values = self.get_cell_value(rlow, clow)
                     break
                 else:
-                    cell_values = self.sheet.cell_value(row_index, col_index)
+                    cell_values = self.get_cell_value(row_index, col_index)
             else:
-                cell_values = self.sheet.cell_value(row_index, col_index)
+                cell_values = self.get_cell_value(row_index, col_index)
         return cell_values
+
+    def get_sheet_data_dict(self):
+        '''获取所有值'''
+        alldata_list = []
+        first_row = self.sheet.row(0) #获取首行数据
+        for row in range(1, self.get_row_count()):
+            row_dict = {}
+            for col in range(self.get_col_count()):
+                row_dict[first_row[col].value] = self.get_merged_cell_value(row, col)
+            alldata_list.append(row_dict)
+        return alldata_list
 
 if __name__ == '__main__':
     current_path = os.path.dirname(__file__)
@@ -55,3 +70,4 @@ if __name__ == '__main__':
     excelUtils = ExccelUtils(excel_path)
     for i in range (1,9):
         print(excelUtils.get_merged_cell_value(i,0))
+    print(excelUtils.get_sheet_data_dict())
