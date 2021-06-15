@@ -59,7 +59,7 @@ class ExccelUtils():
         first_row = self.sheet.row(0) #获取首行数据
         for row in range(1, self.get_row_count()):
             row_dict = {}
-            for col in range(self.get_col_count()):
+            for col in range(0, self.get_col_count()):
                 row_dict[first_row[col].value] = self.get_merged_cell_value(row, col)
             alldata_list.append(row_dict)
         return alldata_list
@@ -68,6 +68,4 @@ if __name__ == '__main__':
     current_path = os.path.dirname(__file__)
     excel_path = os.path.join(current_path,'..','samples/data/test_data.xlsx')
     excelUtils = ExccelUtils(excel_path)
-    for i in range (1,9):
-        print(excelUtils.get_merged_cell_value(i,0))
     print(excelUtils.get_sheet_data_dict())
