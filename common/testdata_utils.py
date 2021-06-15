@@ -11,7 +11,7 @@ import os
 from common.excel_utils import ExccelUtils
 current_path = os.path.dirname(__file__)
 test_data_path = os.path.join(current_path,'..','test_data/test_case.xlsx')
-
+print(test_data_path)
 
 class TestdataUtils():
     def __init__(self, test_data_path = test_data_path):
