@@ -9,7 +9,6 @@
 
 import os
 from common.excel_utils import ExccelUtils
-from common import config
 from common.localconfig_utils import local_conifg
 
 current_path = os.path.dirname(__file__)
