@@ -12,7 +12,7 @@ from common.excel_utils import ExccelUtils
 from common.localconfig_utils import local_conifg
 
 current_path = os.path.dirname(__file__)
-test_data_path = os.path.join(current_path,'..',local_conifg.PATH)
+test_data_path = os.path.join(current_path,'..',local_conifg.DATA_PATH)
 print(test_data_path)
 
 class TestdataUtils():
