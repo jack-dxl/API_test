@@ -68,4 +68,5 @@ if __name__ == '__main__':
     current_path = os.path.dirname(__file__)
     excel_path = os.path.join(current_path,'..','test_data/test_case.xlsx')
     excelUtils = ExccelUtils(excel_path)
-    print(excelUtils.get_sheet_data_dict())
+    for i in range (1,9):
+        print(excelUtils.get_merged_cell_value(i,0))
